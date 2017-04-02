@@ -1,11 +1,22 @@
 package com.github.chabanenk0.Entity;
 
+import org.springframework.stereotype.Component;
+
+@Component("engine")
 public class Engine
 {
     private String modelName;
     private long serialNumber;
     private double volume;
     private String type;
+
+    public Engine()
+    {
+        this.modelName = "no model name";
+        this.serialNumber = 0;
+        this.volume = 0;
+        this.type = "undefined type";
+    }
 
     public Engine(String modelName, long serialNumber, double volume, String type)
     {
@@ -45,5 +56,11 @@ public class Engine
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String toString()
+    {
+        return "Engine(modelName=" + this.getModelName() + ",volume=" + this.getVolume() + ",serialNumber="
+                + this.getSerialNumber() + ",type=" + this.getType() + ")";
     }
 }

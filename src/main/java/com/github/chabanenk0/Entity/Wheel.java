@@ -1,8 +1,11 @@
 package com.github.chabanenk0.Entity;
 
-/**
- * Created by dmitry on 12.02.17.
- */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component("wheel")
 public class Wheel
 {
     private Tyre tyre;
@@ -10,7 +13,21 @@ public class Wheel
     private String type;
     private double diameter;
 
-    public Wheel(Tyre tyre, String modelName, String type, double diameter)
+    public Wheel()
+    {
+
+    }
+
+    @Autowired
+    public void initWheel(SummerTyre tyre)
+    {
+        this.tyre = tyre;
+        this.modelName = "nonamed wheel";
+        this.type = "undefined type";
+        this.diameter = 0;
+    }
+
+    public Wheel(@Qualifier("summerTyre") Tyre tyre, String modelName, @Value("configuratedTyreType") String type, @Value("3.14") double diameter)
     {
         this.tyre = tyre;
         this.modelName = modelName;
@@ -48,5 +65,16 @@ public class Wheel
 
     public void setTyre(Tyre tyre) {
         this.tyre = tyre;
+    }
+
+    public Object clone() throws CloneNotSupportedException
+    {
+        return new Wheel((Tyre) this.tyre.clone(), this.modelName, this.type, this.diameter);
+    }
+
+    public String toString()
+    {
+        return "Wheel: diameter=" + this.diameter + ", type=" + this.type + ", modelName=" + this.modelName
+                + ", tyre:" + this.tyre;
     }
 }

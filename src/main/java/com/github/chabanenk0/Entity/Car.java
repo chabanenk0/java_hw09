@@ -1,19 +1,42 @@
 package com.github.chabanenk0.Entity;
 
 import com.sun.org.apache.xpath.internal.functions.WrongNumberArgsException;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Class "Car" for car bean, dependent on "wheels", "Engine"...
  */
+@Component("car")
 public class Car
 {
     private String modelName;
     private String number;
     private List<Wheel> wheels;
     private Engine engine;
+
+    public Car()
+    {
+
+    }
+
+    @Autowired
+    public void initCar(Engine engine, Wheel wheel) {
+        this.engine = engine;
+        this.wheels = new ArrayList<Wheel>(4);
+        for(int i = 0; i < 4; i++) {
+            try {
+                this.wheels.add((Wheel) wheel.clone());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.modelName = "No name";
+        this.number = "0000";
+    }
 
     public Car(Engine engine, List<Wheel> wheels, String modelName, String number) throws WrongNumberArgsException {
         if (4 != wheels.size()) {
