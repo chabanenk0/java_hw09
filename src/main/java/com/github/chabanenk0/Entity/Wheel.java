@@ -67,7 +67,7 @@ public class Wheel
         this.tyre = tyre;
     }
 
-    public Object clone() throws CloneNotSupportedException
+    public Wheel clone() throws CloneNotSupportedException
     {
         return new Wheel((Tyre) this.tyre.clone(), this.modelName, this.type, this.diameter);
     }
