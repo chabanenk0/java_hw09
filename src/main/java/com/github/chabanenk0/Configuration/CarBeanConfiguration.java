@@ -3,9 +3,11 @@ package com.github.chabanenk0.Configuration;
 import com.github.chabanenk0.Entity.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.LinkedList;
 
+@EnableAspectJAutoProxy
 @Configuration
 public class CarBeanConfiguration {
     @Bean
