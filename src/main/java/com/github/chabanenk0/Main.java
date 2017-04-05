@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.env.Environment;
@@ -25,12 +27,19 @@ public class Main
 {
     public static void main(String[] args)
     {
-//        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"car_beans.xml"});
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"car_beans.xml"});
 //        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"car_beans_annotations.xml"});
-        ApplicationContext context = new AnnotationConfigApplicationContext(CarBeanConfiguration.class);
+        // @todo investigate why aspects doesn't work with my java-based configuration
+//        ApplicationContext context = new AnnotationConfigApplicationContext(CarBeanConfiguration.class);
 
-        Car car = (Car) context.getBean("car");
+        Car car = (Car) context.getBean(Car.class);
         System.out.println(car);
-        System.out.println("Hello, world!");
+        System.out.println("Position(outside Car)=" + car.getPosition());
+        car.drive();
+        System.out.println("Position(outside Car)=" + car.getPosition());
+        car.drive();
+        System.out.println("Position(outside Car)=" + car.getPosition());
+        car.drive();
+        System.out.println("Position(outside Car)=" + car.getPosition());
     }
 }

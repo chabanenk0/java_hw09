@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.github.chabanenk0"/>
+
+    <bean id="car" class="com.github.chabanenk0.Entity.Car">
+        <constructor-arg index="0" ref="engine"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="winterWheel"></ref>
+                <ref bean="winterWheel"></ref>
+                <ref bean="winterWheel"></ref>
+                <ref bean="winterWheel"></ref>
+            </list>
+        </constructor-arg>
+        <constructor-arg type="java.lang.String" index="2">
+            <value>My Super Car</value>
+        </constructor-arg>
+        <constructor-arg type="java.lang.String" index="3">
+            <value>AB 1122 CD</value>
+        </constructor-arg>
+
+    </bean>
+
+    <bean id="engine" class="com.github.chabanenk0.Entity.Engine">
+        <constructor-arg index="0" type="java.lang.String">
+            <value>Engine super car</value>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <value>1234567</value>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <value>2.8</value>
+        </constructor-arg>
+        <constructor-arg index="3">
+            <value>Diezel</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="winterWheel" class="com.github.chabanenk0.Entity.Wheel">
+        <constructor-arg index="0" ref="winterTyre"/>
+        <constructor-arg index="1">
+            <value>SummerWheel superpuper</value>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <value>Titan - metan super wheels</value>
+        </constructor-arg>
+
+        <constructor-arg index="3">
+            <value>23.4</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="winterTyre" class="com.github.chabanenk0.Entity.WinterTyre">
+        <constructor-arg index="0">
+            <value>23.4</value>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <value>Super winter tyres</value>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <value>Powerful winter Protector yyyy</value>
+        </constructor-arg>
+    </bean>
+
+</beans>

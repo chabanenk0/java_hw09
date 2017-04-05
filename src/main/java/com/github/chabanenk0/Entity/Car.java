@@ -18,6 +18,9 @@ public class Car
     private List<Wheel> wheels;
     private Engine engine;
 
+    private long position = 0;
+    private long step = 1;
+
     public Car()
     {
 
@@ -111,5 +114,21 @@ public class Car
         }
 
         return stringBuilder.toString();
+    }
+
+    public void drive()
+    {
+        this.position += this.step;
+        System.out.println("driving... Position(inside Car) = " + this.getPosition());
+    }
+
+    public void accelerate(long acceleration)
+    {
+        this.step += acceleration;
+    }
+
+    public long getPosition()
+    {
+        return this.position;
     }
 }
